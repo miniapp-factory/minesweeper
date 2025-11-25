@@ -119,6 +119,50 @@ export function Minesweeper() {
     setGameOver(true);
   };
 
+  const resetGame = () => {
+    const newGrid: Cell[][] = Array.from({ length: GRID_SIZE }, () =>
+      Array.from({ length: GRID_SIZE }, () => ({
+        mine: false,
+        revealed: false,
+        flagged: false,
+        adjacent: 0,
+      }))
+    );
+
+    // place mines
+    let minesPlaced = 0;
+    while (minesPlaced < NUM_MINES) {
+      const r = Math.floor(Math.random() * GRID_SIZE);
+      const c = Math.floor(Math.random() * GRID_SIZE);
+      if (!newGrid[r][c].mine) {
+        newGrid[r][c].mine = true;
+        minesPlaced++;
+      }
+    }
+
+    // calculate adjacent counts
+    for (let r = 0; r < GRID_SIZE; r++) {
+      for (let c = 0; c < GRID_SIZE; c++) {
+        if (newGrid[r][c].mine) continue;
+        let count = 0;
+        for (let dr = -1; dr <= 1; dr++) {
+          for (let dc = -1; dc <= 1; dc++) {
+            if (dr === 0 && dc === 0) continue;
+            const nr = r + dr;
+            const nc = c + dc;
+            if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
+              if (newGrid[nr][nc].mine) count++;
+            }
+          }
+        }
+        newGrid[r][c].adjacent = count;
+      }
+    }
+
+    setGrid(newGrid);
+    setGameOver(false);
+    setWon(false);
+  };
   const renderCell = (cell: Cell, r: number, c: number) => {
     let content = "";
     if (cell.revealed) {
