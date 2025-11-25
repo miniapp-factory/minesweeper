@@ -20,3 +20,9 @@
 
 # 2025-11-25 17:20:59.997682
 +change the color of unopened cells to a dark grey. also change the background color of a opened cell that contains a mine to red. change the background color to  oklch(0.3806 0.1108 257.44).
+
+# 2025-11-25 17:34:42.060514
++change unopened cell color to dark grey and add a restart button to restart the game. Also, change the app icon to a picture of a landmine.
+
+# 2025-11-25 17:34:42.061164
++change unopened cell color to dark grey and add a restart button to restart the game. Also, change the app icon to a picture of a landmine.
