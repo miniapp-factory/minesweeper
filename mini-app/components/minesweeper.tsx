@@ -1,19 +1,7 @@
-import { description, title } from "@/lib/metadata";
-import { generateMetadata } from "@/lib/farcaster-embed";
-import { Minesweeper } from "@/components/minesweeper";
+"use client";
 
-export { generateMetadata };
-
-export default function Home() {
-  // NEVER write anything here, only use this page to import components
-  return (
-    <main className="flex flex-col gap-3 place-items-center place-content-center px-4 grow">
-      <span className="text-2xl">{title}</span>
-      <span className="text-muted-foreground">{description}</span>
-      <Minesweeper />
-    </main>
-  );
-}
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const GRID_SIZE = 9;
 const NUM_MINES = 10;
@@ -178,5 +166,3 @@ export function Minesweeper() {
     </div>
   );
 }
-512x512
-A stylized representation of a Minesweeper grid with a red bomb in the center and a green checkmark overlay, set against a light gray background.
