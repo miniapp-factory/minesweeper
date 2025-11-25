@@ -1,0 +1,16 @@
+
+# 2025-11-25 14:52:37.871952
++Code the following app
++```
++build a game called Minesweeper. create a 9x9 grid with and allow the player to reveal cells with left mouse-click to open and mark suspected mines with right mouse-click but remain unopened. If the player reveals a cell with a mine then the game is over. If the opened cell doesn't contain a mine then it should display a number indicating how many mines are next to it, vertically, horizontally or diagonally. If there are no mines next to it then open all cells next to it. To win the game all non-mine cells must be opened without opening a mine. The description of the game is "Clear the grid without detonating any of the hidden mines".
++```
++
++Generate an app logo and update the app metadata title and description.
+
+# 2025-11-25 14:52:37.873331
++Code the following app
++```
++build a game called Minesweeper. create a 9x9 grid with and allow the player to reveal cells with left mouse-click to open and mark suspected mines with right mouse-click but remain unopened. If the player reveals a cell with a mine then the game is over. If the opened cell doesn't contain a mine then it should display a number indicating how many mines are next to it, vertically, horizontally or diagonally. If there are no mines next to it then open all cells next to it. To win the game all non-mine cells must be opened without opening a mine. The description of the game is "Clear the grid without detonating any of the hidden mines".
++```
++
++Generate an app logo and update the app metadata title and description.
