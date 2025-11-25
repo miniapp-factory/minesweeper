@@ -14,3 +14,9 @@
 +```
 +
 +Generate an app logo and update the app metadata title and description.
+
+# 2025-11-25 17:20:59.997005
++change the color of unopened cells to a dark grey. also change the background color of a opened cell that contains a mine to red. change the background color to  oklch(0.3806 0.1108 257.44).
+
+# 2025-11-25 17:20:59.997682
++change the color of unopened cells to a dark grey. also change the background color of a opened cell that contains a mine to red. change the background color to  oklch(0.3806 0.1108 257.44).
