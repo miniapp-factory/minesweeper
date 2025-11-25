@@ -134,7 +134,7 @@ export function Minesweeper() {
     const bgClass = cell.revealed && cell.mine
       ? "bg-red-500"
       : !cell.revealed
-      ? "bg-[oklch(0.3806_0.1108_257.44)]"
+      ? "bg-gray-800"
       : "";
 
     return (
@@ -164,6 +164,9 @@ export function Minesweeper() {
           row.map((cell, c) => renderCell(cell, r, c))
         )}
       </div>
+      <Button onClick={resetGame} variant="outline" size="sm" className="mt-4">
+        Restart
+      </Button>
       {gameOver && (
         <div className="text-xl font-semibold">
           {won ? "You Win!" : "Game Over"}
