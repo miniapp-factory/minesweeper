@@ -131,12 +131,18 @@ export function Minesweeper() {
       content = "🚩";
     }
 
+    const bgClass = cell.revealed && cell.mine
+      ? "bg-red-500"
+      : !cell.revealed
+      ? "bg-[oklch(0.3806_0.1108_257.44)]"
+      : "";
+
     return (
       <Button
         key={`${r}-${c}`}
         variant="outline"
         size="sm"
-        className="w-10 h-10 p-0"
+        className={`w-10 h-10 p-0 ${bgClass}`}
         onClick={() => revealCell(r, c)}
         onContextMenu={e => {
           e.preventDefault();
