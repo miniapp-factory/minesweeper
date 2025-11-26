@@ -32,3 +32,9 @@
 
 # 2025-11-26 01:29:27.492817
 +add a timer that starts from 0 minutes and 0 seconds when you start a new game, stops when you win or lose and resets when you restart a game.
+
+# 2025-11-26 01:52:29.784494
++add a leaderboard to keep track of the lowest times to win the game.
+
+# 2025-11-26 01:52:29.784862
++add a leaderboard to keep track of the lowest times to win the game.
