@@ -26,3 +26,9 @@
 
 # 2025-11-25 17:34:42.061164
 +change unopened cell color to dark grey and add a restart button to restart the game. Also, change the app icon to a picture of a landmine.
+
+# 2025-11-26 01:29:27.492464
++add a timer that starts from 0 minutes and 0 seconds when you start a new game, stops when you win or lose and resets when you restart a game.
+
+# 2025-11-26 01:29:27.492817
++add a timer that starts from 0 minutes and 0 seconds when you start a new game, stops when you win or lose and resets when you restart a game.
