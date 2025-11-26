@@ -17,6 +17,7 @@ export function Minesweeper() {
   const [grid, setGrid] = useState<Cell[][]>([]);
   const [gameOver, setGameOver] = useState(false);
   const [won, setWon] = useState(false);
+  const [time, setTime] = useState(0);
 
   useEffect(() => {
     const newGrid: Cell[][] = Array.from({ length: GRID_SIZE }, () =>
@@ -60,6 +61,13 @@ export function Minesweeper() {
 
     setGrid(newGrid);
   }, []);
+
+  useEffect(() => {
+    if (!gameOver) {
+      const id = setInterval(() => setTime(t => t + 1), 1000);
+      return () => clearInterval(id);
+    }
+  }, [gameOver]);
 
   const revealCell = (r: number, c: number) => {
     if (gameOver || grid[r][c].revealed || grid[r][c].flagged) return;
@@ -162,6 +170,7 @@ export function Minesweeper() {
     setGrid(newGrid);
     setGameOver(false);
     setWon(false);
+    setTime(0);
   };
   const renderCell = (cell: Cell, r: number, c: number) => {
     let content = "";
@@ -211,6 +220,10 @@ export function Minesweeper() {
       <Button onClick={resetGame} variant="outline" size="sm" className="mt-4">
         Restart
       </Button>
+      <div className="text-lg">
+        Time: {Math.floor(time / 60).toString().padStart(2, "0")}:
+        {(time % 60).toString().padStart(2, "0")}
+      </div>
       {gameOver && (
         <div className="text-xl font-semibold">
           {won ? "You Win!" : "Game Over"}
