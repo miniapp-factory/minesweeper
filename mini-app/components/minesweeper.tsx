@@ -139,6 +139,9 @@ export function Minesweeper() {
     }
     setWon(true);
     setGameOver(true);
+    const newTimes = [...leaderboard, time].sort((a, b) => a - b).slice(0, 10);
+    setLeaderboard(newTimes);
+    localStorage.setItem("minesweeper-leaderboard", JSON.stringify(newTimes));
   };
 
   const resetGame = () => {
