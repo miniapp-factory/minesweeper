@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import Leaderboard from "@/components/leaderboard";
 
 const GRID_SIZE = 9;
 const NUM_MINES = 10;
@@ -18,6 +19,7 @@ export function Minesweeper() {
   const [gameOver, setGameOver] = useState(false);
   const [won, setWon] = useState(false);
   const [time, setTime] = useState(0);
+  const [leaderboard, setLeaderboard] = useState<number[]>([]);
 
   useEffect(() => {
     const newGrid: Cell[][] = Array.from({ length: GRID_SIZE }, () =>
@@ -60,6 +62,18 @@ export function Minesweeper() {
     }
 
     setGrid(newGrid);
+  }, []);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("minesweeper-leaderboard");
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          setLeaderboard(parsed);
+        }
+      } catch {}
+    }
   }, []);
 
   useEffect(() => {
@@ -224,6 +238,7 @@ export function Minesweeper() {
         Time: {Math.floor(time / 60).toString().padStart(2, "0")}:
         {(time % 60).toString().padStart(2, "0")}
       </div>
+      <Leaderboard times={leaderboard} />
       {gameOver && (
         <div className="text-xl font-semibold">
           {won ? "You Win!" : "Game Over"}
