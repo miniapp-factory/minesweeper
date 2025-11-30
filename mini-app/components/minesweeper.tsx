@@ -4,15 +4,6 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Leaderboard from "@/components/leaderboard";
 
-type Difficulty = "Beginner" | "Intermediate" | "Expert";
-const difficultyOptions: Difficulty[] = ["Beginner", "Intermediate", "Expert"];
-const difficultySettings = {
-  Beginner: { gridSize: 9, numMines: 10 },
-  Intermediate: { gridSize: 16, numMines: 40 },
-  Expert: { gridSize: 30, numMines: 99 },
-};
-const [difficulty, setDifficulty] = useState<Difficulty>("Beginner");
-const { gridSize, numMines } = difficultySettings[difficulty];
 
 type Cell = {
   mine: boolean;
@@ -22,15 +13,6 @@ type Cell = {
 };
 
 export function Minesweeper() {
-  type Difficulty = "Beginner" | "Intermediate" | "Expert";
-  const difficultyOptions: Difficulty[] = ["Beginner", "Intermediate", "Expert"];
-  const difficultySettings = {
-    Beginner: { gridSize: 9, numMines: 10 },
-    Intermediate: { gridSize: 16, numMines: 40 },
-    Expert: { gridSize: 30, numMines: 99 },
-  };
-  const [difficulty, setDifficulty] = useState<Difficulty>("Beginner");
-  const { gridSize, numMines } = difficultySettings[difficulty];
   const [grid, setGrid] = useState<Cell[][]>([]);
   const [gameOver, setGameOver] = useState(false);
   const [won, setWon] = useState(false);
@@ -147,8 +129,8 @@ export function Minesweeper() {
   };
 
   const checkWin = (currentGrid: Cell[][]) => {
-    for (let r = 0; r < GRID_SIZE; r++) {
-      for (let c = 0; c < GRID_SIZE; c++) {
+    for (let r = 0; r < gridSize; r++) {
+      for (let c = 0; c < gridSize; c++) {
         const cell = currentGrid[r][c];
         if (!cell.mine && !cell.revealed) return;
       }
@@ -243,7 +225,7 @@ export function Minesweeper() {
   return (
     <div className="flex flex-col items-center gap-4">
       <div
-        className="grid grid-cols-9 gap-1"
+        className={`grid grid-cols-${gridSize} gap-1`}
         style={{ width: "max-content" }}
       >
         {grid.map((row, r) =>
