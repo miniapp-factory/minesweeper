@@ -13,6 +13,13 @@ type Cell = {
 };
 
 export function Minesweeper() {
+  const [difficulty, setDifficulty] = useState<"Beginner" | "Intermediate" | "Expert">("Beginner");
+  const difficultySettings = {
+    Beginner: { gridSize: 9, numMines: 10 },
+    Intermediate: { gridSize: 16, numMines: 40 },
+    Expert: { gridSize: 30, numMines: 99 },
+  };
+  const { gridSize, numMines } = difficultySettings[difficulty];
   const [grid, setGrid] = useState<Cell[][]>([]);
   const [gameOver, setGameOver] = useState(false);
   const [won, setWon] = useState(false);
@@ -60,7 +67,7 @@ export function Minesweeper() {
     }
 
     setGrid(newGrid);
-  }, []);
+  }, [gridSize, numMines]);
 
   useEffect(() => {
     const stored = localStorage.getItem("minesweeper-leaderboard");
@@ -224,6 +231,21 @@ export function Minesweeper() {
 
   return (
     <div className="flex flex-col items-center gap-4">
+      <div className="flex gap-2 mb-2">
+        {["Beginner", "Intermediate", "Expert"].map(opt => (
+          <Button
+            key={opt}
+            variant={difficulty === opt ? "default" : "outline"}
+            size="sm"
+            onClick={() => {
+              setDifficulty(opt as any);
+              resetGame();
+            }}
+          >
+            {opt}
+          </Button>
+        ))}
+      </div>
       <div
         className={`grid grid-cols-${gridSize} gap-1`}
         style={{ width: "max-content" }}

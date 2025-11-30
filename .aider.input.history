@@ -50,3 +50,9 @@
 
 # 2025-11-26 02:17:14.167675
 +apply changes
+
+# 2025-11-30 17:28:25.556851
++add option to choose between three difficulty levels, Beginner, Intermediate, and Expert, that changes the gridSize and numMines. For Beginner, gridSize should be 9x9 and numMines should be 10. For Intermediate, gridSize should be 16x16 and numMines should be 40. For Expert, gridSize should be 30x16 and numMines should be 99.
+
+# 2025-11-30 17:28:25.557360
++add option to choose between three difficulty levels, Beginner, Intermediate, and Expert, that changes the gridSize and numMines. For Beginner, gridSize should be 9x9 and numMines should be 10. For Intermediate, gridSize should be 16x16 and numMines should be 40. For Expert, gridSize should be 30x16 and numMines should be 99.
