@@ -4,8 +4,15 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Leaderboard from "@/components/leaderboard";
 
-const GRID_SIZE = 9;
-const NUM_MINES = 10;
+type Difficulty = "Beginner" | "Intermediate" | "Expert";
+const difficultyOptions: Difficulty[] = ["Beginner", "Intermediate", "Expert"];
+const difficultySettings = {
+  Beginner: { gridSize: 9, numMines: 10 },
+  Intermediate: { gridSize: 16, numMines: 40 },
+  Expert: { gridSize: 30, numMines: 99 },
+};
+const [difficulty, setDifficulty] = useState<Difficulty>("Beginner");
+const { gridSize, numMines } = difficultySettings[difficulty];
 
 type Cell = {
   mine: boolean;
@@ -15,6 +22,15 @@ type Cell = {
 };
 
 export function Minesweeper() {
+  type Difficulty = "Beginner" | "Intermediate" | "Expert";
+  const difficultyOptions: Difficulty[] = ["Beginner", "Intermediate", "Expert"];
+  const difficultySettings = {
+    Beginner: { gridSize: 9, numMines: 10 },
+    Intermediate: { gridSize: 16, numMines: 40 },
+    Expert: { gridSize: 30, numMines: 99 },
+  };
+  const [difficulty, setDifficulty] = useState<Difficulty>("Beginner");
+  const { gridSize, numMines } = difficultySettings[difficulty];
   const [grid, setGrid] = useState<Cell[][]>([]);
   const [gameOver, setGameOver] = useState(false);
   const [won, setWon] = useState(false);
@@ -22,8 +38,8 @@ export function Minesweeper() {
   const [leaderboard, setLeaderboard] = useState<number[]>([]);
 
   useEffect(() => {
-    const newGrid: Cell[][] = Array.from({ length: GRID_SIZE }, () =>
-      Array.from({ length: GRID_SIZE }, () => ({
+    const newGrid: Cell[][] = Array.from({ length: gridSize }, () =>
+      Array.from({ length: gridSize }, () => ({
         mine: false,
         revealed: false,
         flagged: false,
@@ -33,9 +49,9 @@ export function Minesweeper() {
 
     // place mines
     let minesPlaced = 0;
-    while (minesPlaced < NUM_MINES) {
-      const r = Math.floor(Math.random() * GRID_SIZE);
-      const c = Math.floor(Math.random() * GRID_SIZE);
+    while (minesPlaced < numMines) {
+      const r = Math.floor(Math.random() * gridSize);
+      const c = Math.floor(Math.random() * gridSize);
       if (!newGrid[r][c].mine) {
         newGrid[r][c].mine = true;
         minesPlaced++;
@@ -43,8 +59,8 @@ export function Minesweeper() {
     }
 
     // calculate adjacent counts
-    for (let r = 0; r < GRID_SIZE; r++) {
-      for (let c = 0; c < GRID_SIZE; c++) {
+    for (let r = 0; r < gridSize; r++) {
+      for (let c = 0; c < gridSize; c++) {
         if (newGrid[r][c].mine) continue;
         let count = 0;
         for (let dr = -1; dr <= 1; dr++) {
@@ -52,7 +68,7 @@ export function Minesweeper() {
             if (dr === 0 && dc === 0) continue;
             const nr = r + dr;
             const nc = c + dc;
-            if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
+            if (nr >= 0 && nr < gridSize && nc >= 0 && nc < gridSize) {
               if (newGrid[nr][nc].mine) count++;
             }
           }
@@ -145,8 +161,8 @@ export function Minesweeper() {
   };
 
   const resetGame = () => {
-    const newGrid: Cell[][] = Array.from({ length: GRID_SIZE }, () =>
-      Array.from({ length: GRID_SIZE }, () => ({
+    const newGrid: Cell[][] = Array.from({ length: gridSize }, () =>
+      Array.from({ length: gridSize }, () => ({
         mine: false,
         revealed: false,
         flagged: false,
@@ -156,9 +172,9 @@ export function Minesweeper() {
 
     // place mines
     let minesPlaced = 0;
-    while (minesPlaced < NUM_MINES) {
-      const r = Math.floor(Math.random() * GRID_SIZE);
-      const c = Math.floor(Math.random() * GRID_SIZE);
+    while (minesPlaced < numMines) {
+      const r = Math.floor(Math.random() * gridSize);
+      const c = Math.floor(Math.random() * gridSize);
       if (!newGrid[r][c].mine) {
         newGrid[r][c].mine = true;
         minesPlaced++;
@@ -166,8 +182,8 @@ export function Minesweeper() {
     }
 
     // calculate adjacent counts
-    for (let r = 0; r < GRID_SIZE; r++) {
-      for (let c = 0; c < GRID_SIZE; c++) {
+    for (let r = 0; r < gridSize; r++) {
+      for (let c = 0; c < gridSize; c++) {
         if (newGrid[r][c].mine) continue;
         let count = 0;
         for (let dr = -1; dr <= 1; dr++) {
@@ -175,7 +191,7 @@ export function Minesweeper() {
             if (dr === 0 && dc === 0) continue;
             const nr = r + dr;
             const nc = c + dc;
-            if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
+            if (nr >= 0 && nr < gridSize && nc >= 0 && nc < gridSize) {
               if (newGrid[nr][nc].mine) count++;
             }
           }
